@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>Contact Form</h1>
+    <p class="sub">Your data is stored in MongoDB Atlas.</p>
+
+    {% if error %}
+      <div class="error" role="alert">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('index') }}">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="{{ form.get('name', '') }}" placeholder="Your name">
+
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" value="{{ form.get('email', '') }}" placeholder="you@example.com">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Write something...">{{ form.get('message', '') }}</textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>
